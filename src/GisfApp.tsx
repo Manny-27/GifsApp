@@ -14,8 +14,14 @@ export const GisfApp = () => {
     console.log({term});
   }
 
-  const handleSearch = (query: string) => {
-    console.log(query)
+  const handleSearch = (query: string = '') => {
+    query = query.trim().toLowerCase();
+    
+    if(query.length === 0) return
+
+    if(previousTerms.includes(query)) return
+
+    setpreviousTerms([query, ...previousTerms].slice(0,7))
   }
 
   return (
