@@ -1,22 +1,10 @@
-import { useState } from "react"
+// import { useState } from "react"
+import { useCounter } from "../hooks/useCounter"
 
 
 export const CounterApp = () => {
 
-    const [counter, setCounter] = useState(0)
-
-    const handleAdd = () => {
-        setCounter(counter + 1)
-    }
-
-    const handleSubstrac = () => {
-        if(counter < 1) return
-        setCounter((prevState) => prevState - 1);
-    }
-
-    const handleReset = () => {
-        setCounter(0)
-    }
+    const {counter, handleAdd, handleSubstrac, handleReset} = useCounter(3)
   return (
     <>
         <h1>Counter</h1>
