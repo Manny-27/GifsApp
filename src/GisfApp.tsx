@@ -4,6 +4,7 @@ import { PreviousSearches } from "./gifs/components/PreviousSearches";
 import { mockGifs } from "./mock-type/gifs.mock"
 import { CustomHeader } from "./shared/components/CustomHeader"
 import { SearchBar } from './shared/components/SearchBar';
+import { getGifByQuery } from "./gifs/actions/get-gif-by-query.action";
 
 
 export const GisfApp = () => {
@@ -14,7 +15,7 @@ export const GisfApp = () => {
     console.log({term});
   }
 
-  const handleSearch = (query: string = '') => {
+  const handleSearch = async(query: string = '') => {
     query = query.trim().toLowerCase();
     
     if(query.length === 0) return
@@ -22,6 +23,10 @@ export const GisfApp = () => {
     if(previousTerms.includes(query)) return
 
     setpreviousTerms([query, ...previousTerms].slice(0,7))
+
+    const gifs = await getGifByQuery(query);
+
+    console.log({gifs})
   }
 
   return (
